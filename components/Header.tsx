@@ -15,7 +15,7 @@ const Header = () => {
     const session = useQuery(api.users.viewer)
     return (
     <header className='font-bold rounded-xl border-[1px] mb-5 flex justify-between items-center z-50 sticky top-2 mt-2  w-full mx-auto bg-black max-w-[800px] '>
-        <h1 className='font-semibold text-xl ml-4 m-2'>Shatranj</h1>
+        <h1 className='font-semibold text-xl ml-4 m-2'>fianchetto</h1>
         {
           <div className='flex gap-3 mr-3'>
             {
