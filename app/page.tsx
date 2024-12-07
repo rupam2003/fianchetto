@@ -1,85 +1,54 @@
 "use client"
 
-import { api } from '@/convex/_generated/api'
-import { useAuthActions } from '@convex-dev/auth/react'
-import { useQuery } from 'convex/react'
-import Image from 'next/image'
-import { redirect, useRouter } from 'next/navigation'
+
+import { Chess } from 'chess.js'
 import React, { useEffect } from 'react'
-import { Button } from './ui/button'
-import { GitHubLogoIcon } from '@radix-ui/react-icons'
-
-
-const Header = () => {
-
-    const session = useQuery(api.users.viewer)
-    return (
-    <header className='font-bold rounded-xl border-[1px] mb-5 flex justify-between items-center z-50 sticky top-2 mt-2  w-full mx-auto bg-black max-w-[800px] '>
-        <h1 className='font-semibold text-xl ml-4 m-2'>fianchetto</h1>
-        {
-          <div className='flex gap-3 mr-3'>
-            {
-                session?.user?.image && 
-                <div className='w-9 h-9  relative '>
-                    <Image className='rounded-full' src={session?.user?.image} fill objectFit='contain' alt={"profile"}/>
-                </div>
-            }
-            {session?.status == "authenticated" && <SignOut/>}
-            {session?.status == "unauthenticated" && <SignInWithGoogle/>}
-          </div>
+import Image from 'next/image';
+import Link from 'next/link';
+import { DotBackgroundDemo } from '@/components/ui/grid';
+import {motion} from "framer-motion"
+const HomePage = () => {
  
-        }
-    </header>
+  const game = new Chess()
+  return (
+    
+    <div className='my-[25vh] flex flex-col items-center gap-5'>
+     
+      <motion.div
+        variants={{
+          hidden:{opacity:0,scale:0.90},
+          visible:{opacity:1,scale:1}
+          
+        }}
+        initial="hidden"
+        animate="visible"
+      >
+        <h1 className='sm:text-5xl text-3xl text-center font-bold tracking-tight'>Discover the Joy of Chess</h1>
+        <h2 className=' sm:text-xl text-lg text-slate-400 text-center mt-1'>Enjoy Smooth Multiplayer Chess Experience with Friends </h2>
+      
+      </motion.div>
+      
+
+        <Link className='my-3 text-lg font-medium px-4 py-1.5 rounded-md bg-primary text-primary-foreground shadow transition-colors hover:bg-primary/80' href={"/play"}>
+          Get Started
+        </Link>
+        <figure className=' relative  sm:w-[450px] w-[340px] aspect-square'>
+        <Image 
+        draggable={false}
+        className='border-[10px] border-border rounded-[7px] '
+        fill
+        src={"/chess.png"}
+        alt='chess'
+        />
+      </figure>
+        
+
+      
+    </div>
+    
   )
 }
 
-export default Header
 
 
-function SignOut() {
-    const session = useQuery(api.users.viewer)
-    const router = useRouter()
-    const { signOut } = useAuthActions();
-    useEffect(() => {
-      if(session?.status == "unauthenticated")
-        router.push("/")
-      
-    }, [session])
-    return (
-      <Button
-        className="flex-1"
-        variant="outline"
-        type="button"
-        onClick={() => {
-          signOut()    
-        }}
-      >
-        Sign Out
-      </Button>
-    );
-  }
-
-function SignInWithGoogle() {
-    const { signIn } = useAuthActions();
-    const session = useQuery(api.users.viewer)
-    const router = useRouter()
-    useEffect(() => {
-      if(session?.status == "unauthenticated")
-       {
-         router.push("/")
-         router.refresh()
-      } 
-        
-      
-    }, [session])
-    return (
-      <Button
-        className="flex-1"
-        variant="outline"
-        type="button"
-        onClick={() => void signIn("google", { redirectTo: "/play" })}
-      >
-        <GitHubLogoIcon className="mr-2 h-4 w-4" />Sign In
-      </Button>
-    );
-  }
+export default HomePage
