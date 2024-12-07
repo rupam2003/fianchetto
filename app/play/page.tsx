@@ -29,7 +29,7 @@ const Page = () => {
   return (
     <div className='my-10 mx-4 flex flex-col gap-x-20 gap-y-10 md:flex-row justify-center items-center'>
       
-      <figure className=' relative w-[450px] aspect-square'>
+      <figure className=' relative sm:w-[450px] w-[340px] aspect-square'>
         <Image 
         draggable={false}
         className='border-[10px] border-border rounded-[7px] '
