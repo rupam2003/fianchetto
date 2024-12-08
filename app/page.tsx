@@ -12,7 +12,7 @@ const HomePage = () => {
   const game = new Chess()
   return (
     
-    <div className='my-[25vh] flex flex-col items-center gap-5'>
+    <div className='sm:my-[25vh] my-[10vh] flex flex-col items-center gap-5'>
      
       <motion.div
         variants={{
