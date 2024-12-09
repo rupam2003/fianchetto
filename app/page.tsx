@@ -15,9 +15,11 @@ const HomePage = () => {
     <div className='sm:my-[25vh] my-[10vh] flex flex-col items-center gap-5'>
      
       <motion.div
+        
+        transition={{ duration: 0.7, ease: [.25,.1,.25,1] }}
         variants={{
-          hidden:{opacity:0,scale:0.90},
-          visible:{opacity:1,scale:1}
+          hidden:{filter:"blur(4px)",y:10,opacity:0},
+          visible:{filter:"blur(0px)",y:0,opacity:1}
           
         }}
         initial="hidden"
