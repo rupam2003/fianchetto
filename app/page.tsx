@@ -15,7 +15,7 @@ const HomePage = () => {
     
      
       <motion.div
-        className='my-[20vh] flex flex-col items-center'
+        className='sm:my-[20vh] my-[10vh]  flex flex-col items-center'
         transition={{ duration: 0.7, ease: [.25,.1,.25,1]}}
         variants={{
           hidden:{filter:"blur(4px)",y:10,opacity:0},
