@@ -75,7 +75,7 @@ const HomePage = () => {
         Enjoy Smooth Multiplayer Chess Experience with Friends
       </motion.h2>
 
-      <motion.div className="my-5" variants={childVariants}>
+      <motion.div className="my-10" variants={childVariants}>
         <Link
           className=" text-lg font-medium px-4 py-1.5 rounded-md bg-primary text-primary-foreground shadow transition-colors hover:bg-primary/80"
           href={"/play"}
