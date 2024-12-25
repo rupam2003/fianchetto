@@ -79,7 +79,7 @@ function SignInWithGoogle() {
         type="button"
         onClick={() => void signIn("google", { redirectTo: "/play" })}
       >
-        <GitHubLogoIcon className="mr-2 h-4 w-4" />Sign In
+        Sign In
       </Button>
     );
   }
