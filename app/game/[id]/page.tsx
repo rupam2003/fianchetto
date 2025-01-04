@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { useMutation, useQuery } from 'convex/react'
 import React, { useEffect, useMemo } from 'react'
 import { Id } from '@/convex/_generated/dataModel';
-
+import { CopyIcon } from '@radix-ui/react-icons';
 
 const Page = ({params}:any) => {
   const session = useQuery(api.users.viewer)
@@ -74,7 +74,17 @@ const Page = ({params}:any) => {
     return<></>
 
   if(!board?.player2)
-    return <h1 className='mt-20 text-center text-slate-400 text-lg'><span className='text-white text-2xl'>{params.id}</span><br/> Send this code to a friend and they can join using it</h1>
+    return <h1 className='mt-20 text-center text-slate-400 text-lg'>
+      <span className='text-white text-2xl'>
+        {params.id}
+        <button className='border-border border-[0.5px] ml-3 p-1 rounded-md' onClick={()=>navigator.clipboard.writeText(params.id)}>
+        <CopyIcon />
+      </button>
+    </span>
+    <br/> 
+    Send this code to a friend and they can join using it
+      
+    </h1>
   
 
   return (
