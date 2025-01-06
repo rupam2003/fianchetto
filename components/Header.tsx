@@ -7,15 +7,16 @@ import Image from 'next/image'
 import { redirect, useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 import { Button } from './ui/button'
-import { GitHubLogoIcon } from '@radix-ui/react-icons'
+
 
 
 const Header = () => {
 
     const session = useQuery(api.users.viewer)
     return (
-    <header className='font-bold rounded-xl border-[1px] mb-5 flex justify-between items-center z-50 sticky top-2 mt-2  w-full mx-auto bg-black max-w-[800px] '>
-        <h1 className='font-semibold text-xl ml-4 m-2'>fianchetto</h1>
+    <header className='font-bold border-b-[1px] mb-5 z-50 sticky top-0   w-full  bg-black  '>
+      <div className='mx-auto flex justify-between items-center max-w-[650px]'>
+        <h1 className='font-semibold text-xl ml-4 m-2.5'>fianchetto</h1>
         {
           <div className='flex gap-3 mr-3'>
             {
@@ -26,9 +27,10 @@ const Header = () => {
             }
             {session?.status == "authenticated" && <SignOut/>}
             {session?.status == "unauthenticated" && <SignInWithGoogle/>}
-          </div>
+        </div>
  
         }
+      </div>  
     </header>
   )
 }
